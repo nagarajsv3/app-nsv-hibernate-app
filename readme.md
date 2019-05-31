@@ -29,8 +29,8 @@ mysql : mysql-connector-java : 5.1.10
 
 6. JPA Implementations - Hibernate, Mybatis , Open JPA, TopLink, Eclipse Link
 
-7. hinernate.cfg.xml
-<hibernate-configuration> -> <session-factory> -> <hibernate-properties>
+7. hibernate.cfg.xml
+<hibernate-configuration> -- <session-factory> -- <hibernate-properties>
            
 8. Core Interfaces in Hibernate
     1. Configuration
@@ -39,3 +39,34 @@ mysql : mysql-connector-java : 5.1.10
     4. Criteria
     5. Transaction
          
+Buiding Hibernate 4 SessionFactory
+https://stackoverflow.com/questions/7986750/create-session-factory-in-hibernate-4
+
+UnknownServiceException
+https://stackoverflow.com/questions/26469263/org-hibernate-service-unknownserviceexception-unknown-service-requested
+
+         
+Steps
+1. Create a Maven Project
+2. Update pom file with Hibernate Dependencies
+3. Create hibernate.cfg.xml file with hibernate-configuration and session-factory properties
+4. Create ORM class
+5. Create SessionFactory using Configuration and StandardServiceRegistryBuilder
+6. Create a Session from SessionFactory
+
+create/insert
+session.save(); // return type primary key
+session.persist();//return type void
+
+load/get
+session.load();//returns ObjectNotFoundException if entity is not present
+session.get();//returns null if entity is not present
+
+update
+Transaction tran = session.beginTransaction();
+session.update();
+tran.commit();
+
+saveOrUpdate
+session.saveOrUpdate();//saves if primary key is null 
+                       //updates if primary key is present
