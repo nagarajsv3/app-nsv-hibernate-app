@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+//@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -32,7 +32,26 @@ public class Customer implements Serializable{
     @Transient
     private String fullName;
 
-    //private PhoneInformation phoneInformation;
-    //private List<Order> orders = new ArrayList<>();
+    @OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
+    private PhoneInformation phoneInformation;
 
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OrderColumn(name="idx")
+    private List<Order> orders = new ArrayList<>();
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", phoneInformation=" + phoneInformation +
+                '}';
+    }
 }

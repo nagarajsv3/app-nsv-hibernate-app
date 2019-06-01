@@ -13,5 +13,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Customer" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.PhoneInformation" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.Order" />
     </session-factory>
 </hibernate-configuration>

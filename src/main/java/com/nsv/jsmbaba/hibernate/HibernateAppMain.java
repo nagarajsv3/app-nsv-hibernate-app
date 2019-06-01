@@ -15,10 +15,10 @@ public class HibernateAppMain {
         //createCustomer();
         System.out.println("-----Create Customer-END-----------------");
         System.out.println("-----Load Customer-BEGIN-----------------");
-        //readCustomer();
+        readCustomer();
         System.out.println("-----Load Customer-END-----------------");
         System.out.println("-----Update Customer-BEGIN-----------------");
-        updateCustomer();
+        //updateCustomer();
         System.out.println("-----Update Customer-END-----------------");
     }
 
@@ -59,7 +59,7 @@ public class HibernateAppMain {
     private static void readCustomer() {
         SessionFactory sessionFactory = HibernateUtil.sessionFactory;
         Session session = sessionFactory.openSession();
-        Customer cust = (Customer) session.load(Customer.class, 150);
+        Customer cust = (Customer) session.load(Customer.class, 152);
         System.out.println("Customer loaded from db"+cust.toString());
         session.close();
         sessionFactory.close();

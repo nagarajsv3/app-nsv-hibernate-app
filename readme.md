@@ -70,3 +70,15 @@ tran.commit();
 saveOrUpdate
 session.saveOrUpdate();//saves if primary key is null 
                        //updates if primary key is present
+
+
+Java to Database associatations
+One to One Mapping
+Customer Class
+@OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+private PhoneInformation phoneInfo;
+    
+PhoneInformation Class
+@OneToOne
+@JoinColumn(name="customerId") //Foreign key in PhoneInfo table
+private Customer customer;
