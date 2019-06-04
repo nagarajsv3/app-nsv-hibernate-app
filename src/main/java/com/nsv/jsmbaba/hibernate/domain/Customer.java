@@ -50,8 +50,8 @@ public class Customer implements Serializable{
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", phoneInformation=" + phoneInformation +
+                ", fullName='" + fullName + '\'' +"\n"+
+                ", phoneInformation=" + phoneInformation +"\n"+
                 '}';
     }
 }

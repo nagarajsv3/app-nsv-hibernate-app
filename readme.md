@@ -71,6 +71,7 @@ saveOrUpdate
 session.saveOrUpdate();//saves if primary key is null 
                        //updates if primary key is present
 
+-----------------------------------------------------------------------------------
 
 Java to Database associatations
 One to One Mapping
@@ -82,3 +83,20 @@ PhoneInformation Class
 @OneToOne
 @JoinColumn(name="customerId") //Foreign key in PhoneInfo table
 private Customer customer;
+
+One To Many Mapping
+Customer Class
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OrderColumn(name="idx")
+    private List<Order> orders = new ArrayList<>();
+
+
+Order Class
+    @ManyToOne
+    @JoinColumn(name="customerId")
+    private Customer customer;
+
+    @Column(name="order_status")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
+    

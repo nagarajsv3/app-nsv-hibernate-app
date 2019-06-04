@@ -1,12 +1,14 @@
 package com.nsv.jsmbaba.hibernate;
 
 import com.nsv.jsmbaba.hibernate.domain.Customer;
+import com.nsv.jsmbaba.hibernate.domain.Order;
 import com.nsv.jsmbaba.hibernate.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class HibernateAppMain {
 
@@ -59,8 +61,19 @@ public class HibernateAppMain {
     private static void readCustomer() {
         SessionFactory sessionFactory = HibernateUtil.sessionFactory;
         Session session = sessionFactory.openSession();
-        Customer cust = (Customer) session.load(Customer.class, 152);
+        Customer cust = (Customer) session.load(Customer.class, 157);
         System.out.println("Customer loaded from db"+cust.toString());
+
+        System.out.println("***************************************************");
+        List<Order> orders = cust.getOrders();
+
+        System.out.println("size="+orders.size());
+        System.out.println("orders="+orders);
+
+        for (Order order: orders) {
+            System.out.println(order.getItem().toString()+" "+order.getOrderStatus().toString());
+        }
+
         session.close();
         sessionFactory.close();
     }

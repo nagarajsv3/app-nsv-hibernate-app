@@ -26,4 +26,15 @@ public class Order {
     private Customer customer;
 
     private int idx;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", item='" + item + '\'' +
+                ", orderStatus=" + orderStatus +
+                ", customerName=" + customer.getName() +
+                ", idx=" + idx +
+                '}';
+    }
 }
