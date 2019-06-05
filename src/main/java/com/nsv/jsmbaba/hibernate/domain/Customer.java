@@ -35,7 +35,7 @@ public class Customer implements Serializable{
     @OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
     private PhoneInformation phoneInformation;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @OrderColumn(name="idx")
     private List<Order> orders = new ArrayList<>();
 

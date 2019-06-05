@@ -61,12 +61,13 @@ public class HibernateAppMain {
     private static void readCustomer() {
         SessionFactory sessionFactory = HibernateUtil.sessionFactory;
         Session session = sessionFactory.openSession();
-        Customer cust = (Customer) session.load(Customer.class, 157);
+        Customer cust = (Customer) session.load(Customer.class, 162);
         System.out.println("Customer loaded from db"+cust.toString());
 
+        System.out.println("notice the lazy fetching; collection orders are not fetched yet");
         System.out.println("***************************************************");
         List<Order> orders = cust.getOrders();
-
+        System.out.println("***************************************************");
         System.out.println("size="+orders.size());
         System.out.println("orders="+orders);
 

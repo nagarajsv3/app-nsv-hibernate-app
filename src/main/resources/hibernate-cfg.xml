@@ -17,6 +17,7 @@
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Order" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Reviewer" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Task" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.Author" />
 
     </session-factory>
 </hibernate-configuration>
