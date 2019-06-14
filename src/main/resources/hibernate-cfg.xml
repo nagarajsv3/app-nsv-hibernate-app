@@ -18,6 +18,10 @@
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Reviewer" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Task" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Author" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.Clerk" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.Cd" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.InternationalCd" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.SpecialCd" />
 
     </session-factory>
 </hibernate-configuration>

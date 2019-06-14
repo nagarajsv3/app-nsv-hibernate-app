@@ -100,3 +100,33 @@ Order Class
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
     
+Many To Many Mapping
+Reviewer Class
+    @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinTable(name="reviewer_task",
+               joinColumns = {@JoinColumn(name="reviewer_id")},
+               inverseJoinColumns = {@JoinColumn(name = "task_id")})
+    private List<Task> tasks = new ArrayList<>();
+
+Task Class
+    @ManyToMany(mappedBy = "tasks")
+    private List<Reviewer> reviewers = new ArrayList<>();  
+    
+Natural Key
+CREATE TABLE javatraining.CLERK
+(
+	ssn VARCHAR(11) not null,
+	name VARCHAR(255) not null,
+	joinedDate DateTime not null,
+	terminationDate DateTime default null,
+	active tinyint(1) not null,
+    primary key(ssn)
+);
+
+Inheritence Types in Hibernate
+3 Approach
+1. Single Table Approach
+2. Joined
+3. Table Per Class
+
+Inheritence Type : Single Table 
