@@ -22,6 +22,8 @@
         <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.Cd" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.InternationalCd" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.singletable.SpecialCd" />
-
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.joined.Person" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.joined.Student" />
+        <mapping class="com.nsv.jsmbaba.hibernate.domain.inheritencetype.joined.Teacher" />
     </session-factory>
 </hibernate-configuration>

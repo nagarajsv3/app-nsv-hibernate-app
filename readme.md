@@ -130,3 +130,41 @@ Inheritence Types in Hibernate
 3. Table Per Class
 
 Inheritence Type : Single Table 
+@Entity
+@Table(name="cd")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="cd_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Cd")
+public class Cd {
+    @Id
+    @GeneratedValue
+    @Column(name="cd_id")
+    private Long id;
+
+@Entity
+@Table(name="cd")
+@DiscriminatorValue("InternationalCd")
+public class InternationalCd extends Cd {
+
+Inheritence Type : Joined : Common Data is persisted in separate table and distinct data is persisted in its own table
+@Entity
+@Table(name="person")
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Person {
+    @Id
+    @GeneratedValue
+    @Column(name="person_id")
+    private Long id;
+
+@Entity
+@Table(name="student")
+@PrimaryKeyJoinColumn(name="student_id",  referencedColumnName = "person_id")
+public class Student extends Person {
+
+
+Query in Hibernate :
+1. Criteria
+2. Named Queries
+3. HQL
+
+ 
