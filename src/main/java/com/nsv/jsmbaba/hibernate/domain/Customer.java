@@ -36,7 +36,7 @@ public class Customer implements Serializable{
     private PhoneInformation phoneInformation;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @OrderColumn(name="idx")
+    //@OrderColumn(name="idx")
     private List<Order> orders = new ArrayList<>();
 
 
@@ -52,6 +52,7 @@ public class Customer implements Serializable{
                 ", zipCode='" + zipCode + '\'' +
                 ", fullName='" + fullName + '\'' +"\n"+
                 ", phoneInformation=" + phoneInformation +"\n"+
+                ", orders=" + orders +"\n"+
                 '}';
     }
 }

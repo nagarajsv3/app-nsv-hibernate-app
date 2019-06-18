@@ -14,7 +14,10 @@ public class CriteriaApiMain {
 
         SessionFactory sessionFactory = HibernateUtil.sessionFactory;
         Session session = sessionFactory.openSession();
+
         Criteria criteria = session.createCriteria(Customer.class);
+
+/*        System.out.println("Query : Criteria: used to fetch list of customers");
         criteria.add(Restrictions.eq("state","DE"));
         criteria.add(Restrictions.eq("city","Newark"));
         List<Customer> list = criteria.list();
@@ -23,6 +26,24 @@ public class CriteriaApiMain {
         System.out.println("==========================================");
         list.forEach(customer -> {
             System.out.println(customer.getName()+" "+customer.getState()+" "+customer.getCity());
+        });*/
+
+/*
+        System.out.println("==========================================");
+        System.out.println("Query : Criteria: used to fetch unique customer");
+        criteria.add(Restrictions.eq("name","Aarav"));
+        Customer customer = (Customer) criteria.uniqueResult();
+        System.out.println(customer);
+
+*/
+
+        System.out.println("==========================================");
+        System.out.println("Query : Criteria: using like operation");
+        criteria.add(Restrictions.like("name","S%"));
+        List<Customer> list = criteria.list();
+        System.out.println("size"+list.size());
+        list.forEach(customer -> {
+            System.out.println(customer.getName());
         });
         session.close();
         sessionFactory.close();

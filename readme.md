@@ -167,4 +167,18 @@ Query in Hibernate :
 2. Named Queries
 3. HQL
 
- 
+ Criteria & Projection
+ Note : Association Did not work with Criteria
+//Count
+ Criteria criteria = session.createCriteria(Customer.class);
+         criteria.add(Restrictions.eq("name","Sai"));
+         criteria.add(Restrictions.eq("city","Newark"));
+         criteria.setProjection(Projections.count("name"));
+         List list = criteria.list();
+         
+//Group By          
+criteria.setProjection(Projections.projectionList()
+                .add(Projections.groupProperty("state"))
+                .add(Projections.count("state"))
+
+        );         
