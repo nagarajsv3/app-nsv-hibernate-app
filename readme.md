@@ -216,6 +216,19 @@ Query query = session2.createQuery("from Customer where city = :city");
 query.setCacheable(true);
 
 Criteria Query Caching :
-C
+criteria.setCacheable(true);
 
+Interceptors : 
+1.Create a Class extending EmptyInterceptor
+2.Override the methods like onLoad(), onSave(), onDelete()
+3.Associate Session to the interceptor during session creation
+        Session session = sessionFactory
+                .withOptions().interceptor(new ClerkInterceptor())
+                .openSession();
 
+Hibernate Object Life Cycle :
+transicient
+persistent
+attached
+detached
+removed
