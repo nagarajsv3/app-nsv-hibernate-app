@@ -17,7 +17,8 @@ public class AssociationQueriesCriteria {
 
         //associationquery();
         //performCountUsingCriteriaAndProjection();
-        performGroupUsingCriteriaAndProjection();
+        //performGroupUsingCriteriaAndProjection();
+        getOnlyNames();
 
     }
 
@@ -70,6 +71,20 @@ public class AssociationQueriesCriteria {
         for (Object obj:list) {
             Object[] o = (Object[]) obj;
             System.out.println(o[0]+"="+o[1]);
+        }
+        session.close();
+        sessionFactory.close();
+    }
+
+    private static void getOnlyNames() {
+        SessionFactory sessionFactory = HibernateUtil.sessionFactory;
+        Session session = sessionFactory.openSession();
+        Criteria criteria = session.createCriteria(Customer.class);
+        criteria.setProjection(Projections.property("name")
+        );
+        List list = criteria.list();
+        for (Object obj:list) {
+            System.out.println((String)obj);
         }
         session.close();
         sessionFactory.close();

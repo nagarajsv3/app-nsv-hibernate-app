@@ -5,16 +5,28 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name="clerk", schema = "javatraining")
+@Table(name = "clerk", schema = "javatraining")
+@NamedQueries(value = {
+        @NamedQuery(name = "findActiveClerks",
+                query = " from Clerk where active=true"),
+        @NamedQuery(name = "findterminatedClerks",
+                query = " from Clerk where active=false"),
+})
+@NamedNativeQueries(value = {
+        @NamedNativeQuery(name = "findActiveClerksNativeNamedQuery",
+                query = "select * from clerk where active='1';",
+                resultClass = Clerk.class),
+        @NamedNativeQuery(name = "findTerminatedClerkNamedNativeQuery",
+                query = "select * from clerk where active='0';",
+                resultClass = Clerk.class)
+})
 public class Clerk {
 
     @Id
@@ -23,7 +35,7 @@ public class Clerk {
     private Date joinedDate;
     private Date terminationDate;
 
-    @Type(type="org.hibernate.type.NumericBooleanType")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean active;
 
 }

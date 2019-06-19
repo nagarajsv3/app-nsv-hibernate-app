@@ -182,3 +182,5 @@ criteria.setProjection(Projections.projectionList()
                 .add(Projections.count("state"))
 
         );         
+        
+2. HQL & Native SQL 
