@@ -1,6 +1,7 @@
 package com.nsv.jsmbaba.hibernate.queryingmain;
 
 import com.nsv.jsmbaba.hibernate.domain.Clerk;
+import com.nsv.jsmbaba.hibernate.domain.Customer;
 import com.nsv.jsmbaba.hibernate.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -13,7 +14,22 @@ public class NamedNativeQueriesMain {
         //findActiveClerksUsingNamedQuery();
         //findTerminatedClerksUsingNamedQuery();
         //findActiveClerksUsingNamedNativeQuery();
-        findTerminatedClerksUsingNamedNativeQuery();
+        //findTerminatedClerksUsingNamedNativeQuery();
+        callStoredProcedure();
+    }
+
+    private static void callStoredProcedure() {
+        SessionFactory sessionFactory = HibernateUtil.sessionFactory;
+        Session session = sessionFactory.openSession();
+        Query query = session.getNamedQuery("callcustomerstoredproc");
+        query.setInteger("customerId",100);
+        //List<Customer> customers = query.list();
+        Customer customer = (Customer)query.uniqueResult();
+        System.out.println(customer.toString());
+        session.close();
+        sessionFactory.close();
+
+
     }
 
     private static void findTerminatedClerksUsingNamedNativeQuery() {

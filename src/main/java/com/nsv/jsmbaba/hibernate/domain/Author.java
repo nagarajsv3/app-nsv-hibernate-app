@@ -22,6 +22,7 @@ public class Author {
     private String middleName;
     private String isbn;
 
+    //For Optimistic Locking
     @Version
     private int versionId;
 

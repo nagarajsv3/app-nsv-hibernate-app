@@ -13,14 +13,19 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="customer", schema="javatraining")
-public class Customer implements Serializable{
+@Table(name = "customer", schema = "javatraining")
+@NamedNativeQueries(value = {
+        @NamedNativeQuery(name = "callcustomerstoredproc",
+                query = "call fetchCustomers1(:customerId)",
+                resultClass = Customer.class)
+})
+public class Customer implements Serializable {
 
     @Id
     @GeneratedValue
     private int customerId;
 
-    @Column(name="name",nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     private String street;
@@ -32,7 +37,7 @@ public class Customer implements Serializable{
     @Transient
     private String fullName;
 
-    @OneToOne(mappedBy="customer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private PhoneInformation phoneInformation;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -50,9 +55,9 @@ public class Customer implements Serializable{
                 ", state='" + state + '\'' +
                 ", country='" + country + '\'' +
                 ", zipCode='" + zipCode + '\'' +
-                ", fullName='" + fullName + '\'' +"\n"+
-                ", phoneInformation=" + phoneInformation +"\n"+
-                ", orders=" + orders +"\n"+
+                ", fullName='" + fullName + '\'' + "\n" +
+                ", phoneInformation=" + phoneInformation + "\n" +
+                ", orders=" + orders + "\n" +
                 '}';
     }
 }
