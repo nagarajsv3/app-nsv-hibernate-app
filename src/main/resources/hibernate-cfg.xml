@@ -11,6 +11,11 @@
         <property name="hibernate.connection.password">root</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <!--caching configuration-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <!--second level caching provider-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
 
         <mapping class="com.nsv.jsmbaba.hibernate.domain.Customer" />
         <mapping class="com.nsv.jsmbaba.hibernate.domain.PhoneInformation" />

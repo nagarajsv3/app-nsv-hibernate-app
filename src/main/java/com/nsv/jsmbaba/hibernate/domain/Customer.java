@@ -1,6 +1,13 @@
 package com.nsv.jsmbaba.hibernate.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,6 +26,8 @@ import java.util.List;
                 query = "call fetchCustomers1(:customerId)",
                 resultClass = Customer.class)
 })
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Customer implements Serializable {
 
     @Id
@@ -40,8 +49,9 @@ public class Customer implements Serializable {
     @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private PhoneInformation phoneInformation;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)//, fetch = FetchType.LAZY)
     //@OrderColumn(name="idx")
+    @LazyCollection(value = LazyCollectionOption.TRUE)
     private List<Order> orders = new ArrayList<>();
 
 
@@ -56,8 +66,8 @@ public class Customer implements Serializable {
                 ", country='" + country + '\'' +
                 ", zipCode='" + zipCode + '\'' +
                 ", fullName='" + fullName + '\'' + "\n" +
-                ", phoneInformation=" + phoneInformation + "\n" +
-                ", orders=" + orders + "\n" +
+//                ", phoneInformation=" + phoneInformation + "\n" +
+//                ", orders=" + orders + "\n" +
                 '}';
     }
 }

@@ -184,3 +184,38 @@ criteria.setProjection(Projections.projectionList()
         );         
         
 2. HQL & Native SQL 
+3. NamedQueries & NamedNativeQueries
+
+Locking : 
+Optimistic Locking : Widely used : @VersionId
+Pessimistic Locking
+
+LazyCollectionOption.EXTRA : Provides size of collection using max(idx)+1
+LazyCollectionOption.TRUE : Lazy Fetching of collection
+LazyCollectionOption.FALSE : Eager Fetching of collection
+
+Hibernate Caching:
+First Level Caching : Session Level Caching : Hibernate provides First Level Caching by default.
+Second Level Caching : SessionFactory Level Caching : 
+    1. We need to enable the second level caching and specify the second level caching provider
+    Enable Second Level Caching by adding the session Factory property in hibernate config.xml
+        <!--caching configuration-->
+        <property name="hibernate.cache.use_second_level_cache">true</property>
+        <property name="hibernate.cache.use_query_cache">true</property>
+        <!--second level caching provider-->
+        <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+        
+    2. Mark the entity @Cacheable and Define the Cache strategy
+    @Cacheable
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    
+Query Level Caching : 
+In Hibernate config.xml, <property name="hibernate.cache.use_query_cache">true</property>
+HQL Query Level Second Level Caching
+Query query = session2.createQuery("from Customer where city = :city");
+query.setCacheable(true);
+
+Criteria Query Caching :
+C
+
+

@@ -69,11 +69,13 @@ public class HibernateAppMain {
         List<Order> orders = cust.getOrders();
         System.out.println("***************************************************");
         System.out.println("size="+orders.size());
-        System.out.println("orders="+orders);
+        //System.out.println("orders="+orders);
 
+/*
         for (Order order: orders) {
             System.out.println(order.getItem().toString()+" "+order.getOrderStatus().toString());
         }
+*/
 
         session.close();
         sessionFactory.close();

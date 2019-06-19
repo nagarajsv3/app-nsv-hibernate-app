@@ -3,6 +3,9 @@ package com.nsv.jsmbaba.hibernate.domain;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Cache;
+
 
 import javax.persistence.*;
 
@@ -11,6 +14,8 @@ import javax.persistence.*;
 //@ToString
 @Entity
 @Table(name="phoneinfo", schema = "javatraining")
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class PhoneInformation {
 
     @Id
